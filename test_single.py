@@ -20,10 +20,10 @@ if __name__ == "__main__":
 
   if len(sys.argv) > 1:
     name = sys.argv[1]
-    print "Running experiment: {} (from command-line argument).".format(name)
+    print("Running experiment: {} (from command-line argument).".format(name))
   else:
     name = os.environ["EXP"]
-    print "Running experiment: {} (from environment variable).".format(name)
+    print("Running experiment: {} (from environment variable).".format(name))
 
   config = util.get_config("experiments.conf")[name]
   config["log_dir"] = util.mkdirs(os.path.join(config["log_root"], name))
@@ -36,6 +36,6 @@ if __name__ == "__main__":
 
   with tf.Session() as session:
     checkpoint_path = os.path.join(log_dir, "model.max.ckpt")
-    print "Evaluating {}".format(checkpoint_path)
+    print("Evaluating {}".format(checkpoint_path))
     saver.restore(session, checkpoint_path)
     model.evaluate(session, official_stdout=True)

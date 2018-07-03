@@ -63,7 +63,7 @@ if __name__ == "__main__":
     if "pretrained_dir" in config:
       ckpt = tf.train.get_checkpoint_state(config["pretrained_dir"])
       assert ckpt.model_checkpoint_path
-      print "Loading pretrained model from {}".format(ckpt.model_checkpoint_path)
+      print("Loading pretrained model from {}".format(ckpt.model_checkpoint_path))
       saver.restore(session, ckpt.model_checkpoint_path)
       session.run(model.reset_global_step)
     accumulated_loss = 0.0
@@ -77,7 +77,7 @@ if __name__ == "__main__":
         steps_per_second = tf_global_step / total_time
 
         average_loss = accumulated_loss / report_frequency
-        print "[{}] loss={:.2f}, steps/s={:.2f}".format(tf_global_step, tf_loss, steps_per_second)
+        print("[{}] loss={:.2f}, steps/s={:.2f}".format(tf_global_step, tf_loss, steps_per_second))
         accumulated_loss = 0.0
         writer.add_summary(util.make_summary({
           "Train Loss": average_loss,

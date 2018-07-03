@@ -14,7 +14,7 @@ if __name__ == "__main__":
                 for sentence in json.loads(line)["sentences"]:
                     words_to_keep.update(sentence)
 
-    print "Found {} words in {} dataset(s).".format(len(words_to_keep), len(sys.argv) - 2)
+    print("Found {} words in {} dataset(s).".format(len(words_to_keep), len(sys.argv) - 2))
 
     total_lines = 0
     kept_lines = 0
@@ -28,5 +28,5 @@ if __name__ == "__main__":
                     kept_lines += 1
                     out_file.write(line)
 
-    print "Kept {} out of {} lines.".format(kept_lines, total_lines)
-    print "Wrote result to {}.".format(out_filename)
+    print("Kept {} out of {} lines.".format(kept_lines, total_lines))
+    print("Wrote result to {}.".format(out_filename))

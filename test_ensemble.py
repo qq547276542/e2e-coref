@@ -20,7 +20,7 @@ if __name__ == "__main__":
     util.set_gpus()
 
   names = sys.argv[1:]
-  print "Ensembling models from {}.".format(names)
+  print("Ensembling models from {}.".format(names))
 
   configs = util.get_config("experiments.conf")
 
@@ -37,7 +37,7 @@ if __name__ == "__main__":
       config = configs[name]
       log_dir = os.path.join(config["log_root"], name)
       checkpoint_path = os.path.join(log_dir, "model.max.ckpt")
-      print "Computing mention scores for {}".format(checkpoint_path)
+      print("Computing mention scores for {}".format(checkpoint_path))
       saver.restore(session, checkpoint_path)
 
       for example_num, (tensorized_example, example) in enumerate(model.eval_data):
@@ -46,7 +46,7 @@ if __name__ == "__main__":
         all_mention_scores[example["doc_key"]].append(mention_scores)
 
         if example_num % 10 == 0:
-          print "Computed {}/{} examples.".format(example_num + 1, len(model.eval_data))
+          print("Computed {}/{} examples.".format(example_num + 1, len(model.eval_data)))
 
     mean_mention_scores = { doc_key : np.mean(s, 0) for doc_key, s in all_mention_scores.items() }
 
@@ -59,7 +59,7 @@ if __name__ == "__main__":
       config = configs[name]
       log_dir = os.path.join(config["log_root"], name)
       checkpoint_path = os.path.join(log_dir, "model.max.ckpt")
-      print "Computing antecedent scores for {}".format(checkpoint_path)
+      print("Computing antecedent scores for {}".format(checkpoint_path))
       saver.restore(session, checkpoint_path)
 
       for example_num, (tensorized_example, example) in enumerate(model.eval_data):
@@ -79,7 +79,7 @@ if __name__ == "__main__":
         all_antecedent_scores[doc_key].append(antecedent_scores)
 
         if example_num % 10 == 0:
-          print "Computed {}/{} examples.".format(example_num + 1, len(model.eval_data))
+          print("Computed {}/{} examples.".format(example_num + 1, len(model.eval_data)))
 
     mean_antecedent_scores = { doc_key : np.mean(s, 0) for doc_key, s in all_antecedent_scores.items() }
 
@@ -103,6 +103,6 @@ if __name__ == "__main__":
   average_f = sum(results["f"] for results in conll_results.values()) / len(conll_results)
   average_r = sum(results["r"] for results in conll_results.values()) / len(conll_results)
   average_p = sum(results["p"] for results in conll_results.values()) / len(conll_results)
-  print "Merged average F1 (conll): {:.2f}%".format(average_f)
-  print "Merged average Recall (conll): {:.2f}%".format(average_r)
-  print "Merged average Precision (conll): {:.2f}%".format(average_p)
+  print("Merged average F1 (conll): {:.2f}%".format(average_f))
+  print("Merged average Recall (conll): {:.2f}%".format(average_r))
+  print("Merged average Precision (conll): {:.2f}%".format(average_p))

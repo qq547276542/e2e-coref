@@ -7,7 +7,7 @@ import json
 import numpy as np
 
 import cgi
-from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
+from http.server import HTTPServer, BaseHTTPRequestHandler
 import ssl
 
 import tensorflow as tf
@@ -80,7 +80,7 @@ if __name__ == "__main__":
   else:
     port = None
 
-  print "Running experiment: {}.".format(name)
+  print("Running experiment: {}.".format(name))
   config = util.get_config("experiments.conf")[name]
   config["log_dir"] = util.mkdirs(os.path.join(config["log_root"], name))
 
@@ -101,5 +101,5 @@ if __name__ == "__main__":
       server.serve_forever()
     else:
       while True:
-        text = raw_input("Document text: ")
+        text = input("Document text: ")
         print_predictions(make_predictions(text, model))

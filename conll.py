@@ -9,6 +9,7 @@ import subprocess
 import operator
 import collections
 
+
 BEGIN_DOCUMENT_REGEX = re.compile(r"#begin document \((.*)\); part (\d+)")
 COREF_RESULTS_REGEX = re.compile(r".*Coreference: Recall: \([0-9.]+ / [0-9.]+\) ([0-9.]+)%\tPrecision: \([0-9.]+ / [0-9.]+\) ([0-9.]+)%\tF1: ([0-9.]+)%.*", re.DOTALL)
 
@@ -76,11 +77,11 @@ def official_conll_eval(gold_path, predicted_path, metric, official_stdout=False
   process.wait()
 
   if stderr is not None:
-    print stderr
+    print(stderr)
 
   if official_stdout:
-    print "Official result for {}".format(metric)
-    print stdout
+    print("Official result for {}".format(metric))
+    print(stdout)
 
   coref_results_match = re.match(COREF_RESULTS_REGEX, stdout)
   recall = float(coref_results_match.group(1))

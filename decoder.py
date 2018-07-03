@@ -16,7 +16,7 @@ if __name__ == "__main__":
   name = sys.argv[1]
   output_filename = sys.argv[2]
 
-  print "Running experiment: {}.".format(name)
+  print("Running experiment: {}.".format(name))
   config = util.get_config("experiments.conf")[name]
   config["log_dir"] = util.mkdirs(os.path.join(config["log_root"], name))
 
@@ -43,4 +43,4 @@ if __name__ == "__main__":
         f.write(json.dumps(example))
         f.write("\n")
         if example_num % 100 == 0:
-          print "Decoded {} examples.".format(example_num + 1)
+          print("Decoded {} examples.".format(example_num + 1))

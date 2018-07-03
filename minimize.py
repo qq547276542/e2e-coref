@@ -120,7 +120,7 @@ def minimize_partition(name, language, extension):
   input_path = "{}.{}.{}".format(name, language, extension)
   output_path = "{}.{}.jsonlines".format(name, language)
   count = 0
-  print "Minimizing {}".format(input_path)
+  print("Minimizing {}".format(input_path))
   with open(input_path, "r") as input_file:
     with open(output_path, "w") as output_file:
       document_state = DocumentState()
@@ -131,7 +131,7 @@ def minimize_partition(name, language, extension):
           output_file.write("\n")
           count += 1
           document_state = DocumentState()
-  print "Wrote {} documents to {}".format(count, output_path)
+  print("Wrote {} documents to {}".format(count, output_path))
 
 def minimize_language(language):
   minimize_partition("dev", language, "v4_auto_conll")
